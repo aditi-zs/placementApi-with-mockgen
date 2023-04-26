@@ -1,0 +1,556 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Placement API",
+    "version": "1.0.11"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "company"
+    },
+    {
+      "name": "student"
+    }
+  ],
+  "paths": {
+    "/companies": {
+      "post": {
+        "tags": [
+          "company"
+        ],
+        "summary": "Add a new company's data",
+        "description": "Add a new company's data",
+        "requestBody": {
+          "description": "Create a new company",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyPost"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyGet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "company"
+        ],
+        "summary": "Find companies",
+        "description": "Find all the companies",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyGet"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/companies/{id}": {
+      "get": {
+        "tags": [
+          "company"
+        ],
+        "summary": "Find companies by ids",
+        "description": "Find the companies by their ids",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "example": "6dbae7e9-0cfb-40a7-a977-2f826bcc951c"
+            },
+            "required": true,
+            "description": "UUID of the company"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyGet"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "company"
+        ],
+        "summary": "Update companies by ids",
+        "description": "Update the companies data by their ids",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "example": "6dbae7e9-0cfb-40a7-a977-2f826bcc951c"
+            },
+            "required": true,
+            "description": "UUID of the company"
+          }
+        ],
+        "requestBody": {
+          "description": "update a company",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyPost"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully Updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyGet"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "company"
+        ],
+        "summary": "Delete companies by ids",
+        "description": "Delete the companies data by their ids",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "example": "6dbae7e9-0cfb-40a7-a977-2f826bcc951c"
+            },
+            "required": true,
+            "description": "UUID of the company"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/students": {
+      "post": {
+        "tags": [
+          "student"
+        ],
+        "summary": "Add a new student's data",
+        "description": "Add a new student's data",
+        "requestBody": {
+          "description": "Create a new student",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentPost"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentPost"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "student"
+        ],
+        "summary": "Find students",
+        "description": "Find all the students",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string",
+              "example": "Aditi"
+            }
+          },
+          {
+            "in": "query",
+            "name": "branch",
+            "schema": {
+              "type": "string",
+              "example": "ECE"
+            }
+          },
+          {
+            "in": "query",
+            "name": "includeCompany",
+            "schema": {
+              "type": "string",
+              "example": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "when all query params are correct",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StudentGetFull"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/students/{id}": {
+      "get": {
+        "tags": [
+          "student"
+        ],
+        "summary": "Find student by ids",
+        "description": "Find students by their ids",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "example": "6dbae7e9-0cfb-40a7-a977-2f826bcc951c"
+            },
+            "required": true,
+            "description": "UUID of the student"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/StudentGetFull"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "student"
+        ],
+        "summary": "Update student's data by ids",
+        "description": "Update the student's data by their ids",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "example": "6dbae7e9-0cfb-40a7-a977-2f826bcc951c"
+            },
+            "required": true,
+            "description": "UUID of the student"
+          }
+        ],
+        "requestBody": {
+          "description": "Create a new student",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentPost"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully Updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/StudentGet"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "student"
+        ],
+        "summary": "Delete student's data by id",
+        "description": "Delete student's data by id ids",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "example": "6dbae7e9-0cfb-40a7-a977-2f826bcc951c"
+            },
+            "required": true,
+            "description": "UUID of the student"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CompanyGet": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "6dbae7e9-0cfb-40a7-a977-2f826bcc951c"
+          },
+          "name": {
+            "type": "string",
+            "example": "Wipro"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "MASS",
+              "OPEN DREAM",
+              "DREAM IT",
+              "CORE"
+            ]
+          }
+        }
+      },
+      "CompanyPost": {
+        "type": "object",
+        "required": [
+          "Name",
+          "Category"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Wipro"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "MASS",
+              "OPEN DREAM",
+              "DREAM IT",
+              "CORE"
+            ]
+          }
+        }
+      },
+      "StudentPost": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "6dbae7e9-0cfb-40a7-a977-2f826bcc951c"
+          },
+          "name": {
+            "type": "string",
+            "example": "Aditi"
+          },
+          "phone": {
+            "type": "string",
+            "example": 6388768118
+          },
+          "dob": {
+            "type": "string",
+            "example": "02/07/2000"
+          },
+          "branch": {
+            "type": "string",
+            "enum": [
+              "CSE",
+              "ISE",
+              "ECE",
+              "EEE",
+              "MECH",
+              "CIVIL"
+            ]
+          },
+          "comp": {
+            "type": "object",
+            "example": {
+              "id": "71bbdbb9-6bde-11ed-aaff-64bc589051b4",
+              "name": "",
+              "category": ""
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACCEPTED",
+              "REJECTED",
+              "PENDING"
+            ]
+          }
+        }
+      },
+      "StudentGetFull": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "6dbae7e9-0cfb-40a7-a977-2f826bcc951c"
+          },
+          "name": {
+            "type": "string",
+            "example": "Aditi"
+          },
+          "phone": {
+            "type": "string",
+            "example": 6388768118
+          },
+          "dob": {
+            "type": "string",
+            "example": "02/07/2000"
+          },
+          "branch": {
+            "type": "string",
+            "example": "ECE"
+          },
+          "comp": {
+            "type": "object",
+            "example": {
+              "id": "71bbdbb9-6bde-11ed-aaff-64bc589051b4",
+              "name": "Wipro",
+              "category": "MASS"
+            }
+          },
+          "status": {
+            "type": "string",
+            "example": "ACCEPTED"
+          }
+        }
+      },
+      "StudentGet": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "6dbae7e9-0cfb-40a7-a977-2f826bcc951c"
+          },
+          "name": {
+            "type": "string",
+            "example": "Aditi"
+          },
+          "phone": {
+            "type": "string",
+            "example": 6388768118
+          },
+          "dob": {
+            "type": "string",
+            "example": "02/07/2000"
+          },
+          "branch": {
+            "type": "string",
+            "example": "ECE"
+          }
+        }
+      }
+    }
+  }
+}
