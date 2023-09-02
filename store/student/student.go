@@ -110,7 +110,7 @@ func (s store) Create(ctx context.Context, st *entities.Student) (entities.Stude
 	st.ID = uuid.New()
 
 	_, err := s.db.ExecContext(ctx, postQuery, st.ID,
-		st.Name, st.Phone, st.DOB, st.Branch, st.Comp.ID, st.Status)
+		st.Name, st.Phone, st.DOB, st.Branch, st.Status, st.Comp.ID)
 	if err != nil {
 		return entities.Student{}, errors.DB{Reason: "server error"}
 	}

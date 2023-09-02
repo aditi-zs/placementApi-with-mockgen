@@ -19,7 +19,7 @@ import (
 )
 
 func main() {
-	db, err := driver.DBConnection("mysql", "root:Aditi#2#@tcp(127.0.0.1:3306)/placement")
+	db, err := driver.DBConnection("mysql", "root:password@tcp(172.17.0.2:3306)/placement")
 
 	if err != nil {
 		log.Println(err)
@@ -36,26 +36,26 @@ func main() {
 	stuHandler := studentHandler.New(svcStu)
 
 	router := mux.NewRouter()
-	router.HandleFunc("/companies", middleware(cmpHandler.Get)).Methods("GET")
-	router.HandleFunc("/companies/{id}", middleware(cmpHandler.GetByID)).Methods("GET")
-	router.HandleFunc("/companies", middleware(cmpHandler.Create)).Methods("POST")
-	router.HandleFunc("/companies/{id}", middleware(cmpHandler.Update)).Methods("PUT")
-	router.HandleFunc("/companies/{id}", middleware(cmpHandler.Delete)).Methods("DELETE")
+	router.HandleFunc("/companies", cmpHandler.Get).Methods("GET")
+	router.HandleFunc("/companies/{id}", cmpHandler.GetByID).Methods("GET")
+	router.HandleFunc("/companies", cmpHandler.Create).Methods("POST")
+	router.HandleFunc("/companies/{id}", cmpHandler.Update).Methods("PUT")
+	router.HandleFunc("/companies/{id}", cmpHandler.Delete).Methods("DELETE")
 
-	router.HandleFunc("/students", middleware(stuHandler.Get)).Methods("GET")
-	router.HandleFunc("/students/{id}", middleware(stuHandler.GetByID)).Methods("GET")
-	router.HandleFunc("/students", middleware(stuHandler.Create)).Methods("POST")
-	router.HandleFunc("/students/{id}", middleware(stuHandler.Update)).Methods("PUT")
-	router.HandleFunc("/students/{id}", middleware(stuHandler.Delete)).Methods("DELETE")
+	router.HandleFunc("/students", stuHandler.Get).Methods("GET")
+	router.HandleFunc("/students/{id}", stuHandler.GetByID).Methods("GET")
+	router.HandleFunc("/students", stuHandler.Create).Methods("POST")
+	router.HandleFunc("/students/{id}", stuHandler.Update).Methods("PUT")
+	router.HandleFunc("/students/{id}", stuHandler.Delete).Methods("DELETE")
 
 	const timeoutVar = 3
 
 	server := &http.Server{
-		Addr:              ":8000",
+		Addr:              ":8080",
 		ReadHeaderTimeout: timeoutVar * time.Second,
 		Handler:           router,
 	}
 
-	fmt.Println("server at port 8000")
+	fmt.Println("server at port 8080")
 	log.Fatal(server.ListenAndServe())
 }
