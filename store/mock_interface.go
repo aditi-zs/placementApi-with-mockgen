@@ -8,7 +8,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	entities "github.com/Zopsmart-Training/student-recruitment-system/entities"
+	entities "github.com/aditi-zs/Placement-API/entities"
 	gomock "github.com/golang/mock/gomock"
 	uuid "github.com/google/uuid"
 )

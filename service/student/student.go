@@ -6,9 +6,9 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/Zopsmart-Training/student-recruitment-system/entities"
-	"github.com/Zopsmart-Training/student-recruitment-system/errors"
-	"github.com/Zopsmart-Training/student-recruitment-system/store"
+	"github.com/aditi-zs/Placement-API/entities"
+	"github.com/aditi-zs/Placement-API/errors"
+	"github.com/aditi-zs/Placement-API/store"
 )
 
 type handler struct {

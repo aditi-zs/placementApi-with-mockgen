@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  mysql:
+    image: "mysql:latest"
+    container_name: mysql-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: placement
+    ports:
+      - "3306:3306"
+    networks:
+      - my-network
+
+  webserver:
+    image: placement-api-final
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - my-network
+
+networks:
+  my-network:
+

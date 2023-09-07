@@ -4,14 +4,14 @@ import (
 	"context"
 	"database/sql/driver"
 	"errors"
+	"github.com/DATA-DOG/go-sqlmock"
 	"testing"
 
-	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Zopsmart-Training/student-recruitment-system/entities"
-	errors2 "github.com/Zopsmart-Training/student-recruitment-system/errors"
+	"github.com/aditi-zs/Placement-API/entities"
+	errors2 "github.com/aditi-zs/Placement-API/errors"
 )
 
 func TestGet(t *testing.T) {

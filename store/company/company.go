@@ -6,8 +6,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/Zopsmart-Training/student-recruitment-system/entities"
-	"github.com/Zopsmart-Training/student-recruitment-system/errors"
+	"github.com/aditi-zs/Placement-API/entities"
+	"github.com/aditi-zs/Placement-API/errors"
 )
 
 type store struct {

@@ -5,7 +5,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/Zopsmart-Training/student-recruitment-system/entities"
+	"github.com/aditi-zs/Placement-API/entities"
 )
 
 type StudentStore interface {

@@ -5,14 +5,14 @@ import (
 	"database/sql"
 	"database/sql/driver"
 	"errors"
+	"github.com/DATA-DOG/go-sqlmock"
 	"testing"
 
-	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Zopsmart-Training/student-recruitment-system/entities"
-	errors2 "github.com/Zopsmart-Training/student-recruitment-system/errors"
+	"github.com/aditi-zs/Placement-API/entities"
+	errors2 "github.com/aditi-zs/Placement-API/errors"
 )
 
 func TestGetWithCompany(t *testing.T) {
@@ -226,7 +226,7 @@ func TestCreate(t *testing.T) {
 	for i, tc := range tests {
 		mock.ExpectExec(postQuery).
 			WithArgs(sqlmock.AnyArg(), tc.input.Name, tc.input.Phone, tc.input.DOB, tc.input.Branch,
-				tc.input.Comp.ID, tc.input.Status).WillReturnResult(tc.res).WillReturnError(tc.mockErr)
+				tc.input.Status, tc.input.Comp.ID).WillReturnResult(tc.res).WillReturnError(tc.mockErr)
 
 		store := New(db)
 		ctx := context.TODO()

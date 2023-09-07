@@ -12,9 +12,9 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Zopsmart-Training/student-recruitment-system/entities"
-	"github.com/Zopsmart-Training/student-recruitment-system/errors"
-	"github.com/Zopsmart-Training/student-recruitment-system/service"
+	"github.com/aditi-zs/Placement-API/entities"
+	"github.com/aditi-zs/Placement-API/errors"
+	"github.com/aditi-zs/Placement-API/service"
 )
 
 const valID = "1fa46d13-6a50-11ed-90d1-64bc589051b4"

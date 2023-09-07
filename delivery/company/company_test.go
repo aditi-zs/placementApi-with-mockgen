@@ -12,9 +12,9 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Zopsmart-Training/student-recruitment-system/entities"
-	"github.com/Zopsmart-Training/student-recruitment-system/errors"
-	"github.com/Zopsmart-Training/student-recruitment-system/service"
+	"github.com/aditi-zs/Placement-API/entities"
+	"github.com/aditi-zs/Placement-API/errors"
+	"github.com/aditi-zs/Placement-API/service"
 )
 
 func initializeTest(t *testing.T) *service.MockCompanySvc {
