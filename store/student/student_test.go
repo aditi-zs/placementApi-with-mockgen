@@ -226,7 +226,7 @@ func TestCreate(t *testing.T) {
 	for i, tc := range tests {
 		mock.ExpectExec(postQuery).
 			WithArgs(sqlmock.AnyArg(), tc.input.Name, tc.input.Phone, tc.input.DOB, tc.input.Branch,
-				tc.input.Comp.ID, tc.input.Status).WillReturnResult(tc.res).WillReturnError(tc.mockErr)
+				tc.input.Status, tc.input.Comp.ID).WillReturnResult(tc.res).WillReturnError(tc.mockErr)
 
 		store := New(db)
 		ctx := context.TODO()
